@@ -1,4 +1,4 @@
-package com.futstack.controller;
+package com.futstack.repository;
 
 import javax.enterprise.context.ApplicationScoped;
 
@@ -8,9 +8,6 @@ import io.quarkus.hibernate.orm.panache.PanacheRepository;
 
 @ApplicationScoped
 public class LoginRepository implements PanacheRepository<Login> {
-    public Login findByName(String name){
-        return find("name", name).firstResult();
-    }
- 
+  
     
 }

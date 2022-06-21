@@ -3,6 +3,7 @@ package com.futstack.controller;
 import java.util.List;
 import java.util.Optional;
 
+import javax.inject.Inject;
 import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -17,12 +18,16 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import com.futstack.Model.Deposito;
+import com.futstack.repository.MovimentacaoRepository;
 
 @Path("/deposito")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class DepositoResource {
    
+    @Inject
+    MovimentacaoRepository movimentacaoRepository;
+
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<Deposito> listarTodos() {
@@ -41,6 +46,8 @@ public class DepositoResource {
     public Response criar(Deposito dto) {
         try {
             dto.persist();
+            movimentacaoRepository.registraCriacaoDeposito(dto);
+
             Response retorno = Response.status(Response.Status.CREATED).build();
             return retorno;
         }catch (Exception e){
@@ -60,12 +67,11 @@ public class DepositoResource {
             Deposito dto = depositoOp.get();
 
 
-            dto.setNome_deposito(deposito.getNome_deposito());
-            dto.setReposicao_deposito(deposito.getReposicao_deposito());
-            dto.setId_produto_fk(deposito.getId_produto_fk());
+            dto.setDe_nome(deposito.getDe_nome());
+            dto.setDe_reposicao(deposito.getDe_reposicao());
             
             dto.persist();
-
+            movimentacaoRepository.registraAlteracaoDeposito(dto);
             return "Alteração feita com sucesso!";
         } catch (Exception e) {
             throw new NotFoundException(e);
@@ -79,7 +85,9 @@ public class DepositoResource {
         try {
             
         Optional<Deposito> depositoOp = Deposito.findByIdOptional(id);
+        Deposito dto = depositoOp.get();
         depositoOp.ifPresentOrElse(Deposito::delete, () -> {throw new NotFoundException();});
+        movimentacaoRepository.registraExclusaoDeposito(dto);
         return "Deposito excluido com sucesso!!";
         } catch (Exception e) {
             throw new NotFoundException(e);

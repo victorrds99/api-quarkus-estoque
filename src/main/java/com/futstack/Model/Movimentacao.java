@@ -1,5 +1,6 @@
 package com.futstack.Model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -14,72 +15,73 @@ import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 
 @Entity
 @Table(name = "tb_movimentacao")
-public class Movimentacao extends PanacheEntityBase {
+public class Movimentacao extends PanacheEntityBase implements Serializable {
+
+    private static final long serialVersionUID = 1L;
     @Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public int id_movimentacao;
+	public int mo_id;
 
 	@CreationTimestamp
-	private Date data_movimentacao;
+	private Date mo_data;
 
-	public String tipo_movimentacao;
+	public String mo_tipo;
 
-	public int quantidade_movimentacao;
+	public int mo_quantidade;
 	
-	public int id_produto_fk;
+	public int mo_id_produto_fk;
 	
-	public int id_fornecedor_fk;
+	public int mo_id_fornecedor_fk;
+
+	public int getMo_id() {
+		return mo_id;
+	}
+
+	public void setMo_id(int mo_id) {
+		this.mo_id = mo_id;
+	}
+
+	public Date getMo_data() {
+		return mo_data;
+	}
+
+	public void setMo_data(Date mo_data) {
+		this.mo_data = mo_data;
+	}
+
+	public String getMo_tipo() {
+		return mo_tipo;
+	}
+
+	public void setMo_tipo(String mo_tipo) {
+		this.mo_tipo = mo_tipo;
+	}
+
+	public int getMo_quantidade() {
+		return mo_quantidade;
+	}
+
+	public void setMo_quantidade(int mo_quantidade) {
+		this.mo_quantidade = mo_quantidade;
+	}
+
+	public int getMo_id_produto_fk() {
+		return mo_id_produto_fk;
+	}
+
+	public void setMo_id_produto_fk(int mo_id_produto_fk) {
+		this.mo_id_produto_fk = mo_id_produto_fk;
+	}
+
+	public int getMo_id_fornecedor_fk() {
+		return mo_id_fornecedor_fk;
+	}
+
+	public void setMo_id_fornecedor_fk(int mo_id_fornecedor_fk) {
+		this.mo_id_fornecedor_fk = mo_id_fornecedor_fk;
+	}
 
     
-	public int getId_movimentacao() {
-        return id_movimentacao;
-    }
-
-    public void setId_movimentacao(int id_movimentacao) {
-        this.id_movimentacao = id_movimentacao;
-    }
-
-    public Date getData_movimentacao() {
-		return data_movimentacao;
-	}
-
-	public void setData_movimentacao(Date data_movimentacao) {
-		this.data_movimentacao = data_movimentacao;
-	}
-
-	public String getTipo_movimentacao() {
-		return tipo_movimentacao;
-	}
-
-	public void setTipo_movimentacao(String tipo_movimentacao) {
-		this.tipo_movimentacao = tipo_movimentacao;
-	}
-
-	public int getQuantidade_movimentacao() {
-		return quantidade_movimentacao;
-	}
-
-	public void setQuantidade_movimentacao(int quantidade_movimentacao) {
-		this.quantidade_movimentacao = quantidade_movimentacao;
-	}
-
-    public int getId_produto_fk() {
-        return id_produto_fk;
-    }
-
-    public void setId_produto_fk(int id_produto_fk) {
-        this.id_produto_fk = id_produto_fk;
-    }
-
-    public int getId_fornecedor_fk() {
-        return id_fornecedor_fk;
-    }
-
-    public void setId_fornecedor_fk(int id_fornecedor_fk) {
-        this.id_fornecedor_fk = id_fornecedor_fk;
-    }
-
-    
-
+	
 	
 }

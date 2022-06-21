@@ -3,6 +3,7 @@ package com.futstack.controller;
 import java.util.List;
 import java.util.Optional;
 
+import javax.inject.Inject;
 import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -17,12 +18,16 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import com.futstack.Model.Fornecedor;
+import com.futstack.repository.MovimentacaoRepository;
 
 @Path("/fornecedor")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class FornecedorResource {
-    
+    @Inject
+    MovimentacaoRepository movimentacaoRepository;
+
+
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<Fornecedor> listarTodos() {
@@ -40,6 +45,7 @@ public class FornecedorResource {
     public Response criar(Fornecedor dto) {
         try {
             dto.persist();
+            movimentacaoRepository.registraCriacaoFornecedor(dto);
             Response retorno = Response.status(Response.Status.CREATED).build();
             return retorno;
         }catch (Exception e){
@@ -58,8 +64,8 @@ public class FornecedorResource {
             Fornecedor dto = fornecedorOp.get();
 
 
-            dto.setNome_fornecedor(fornecedor.getNome_fornecedor());
-            
+            dto.setFo_nome(fornecedor.getFo_nome());
+            movimentacaoRepository.registraAlteracaoFornecedor(dto);
             dto.persist();
 
             return "Alteração feita com sucesso!";
@@ -75,7 +81,9 @@ public class FornecedorResource {
         try {
             
         Optional<Fornecedor> fornecedorOp = Fornecedor.findByIdOptional(id);
+        Fornecedor dto = fornecedorOp.get();
         fornecedorOp.ifPresentOrElse(Fornecedor::delete, () -> {throw new NotFoundException();});
+        movimentacaoRepository.registraExclusaoFornecedor(dto);
         return "Fornecedor excluido com sucesso!!";
         } catch (Exception e) {
             throw new NotFoundException(e);

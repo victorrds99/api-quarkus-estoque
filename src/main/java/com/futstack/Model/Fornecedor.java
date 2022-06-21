@@ -1,42 +1,64 @@
 package com.futstack.Model;
 
+
+import java.io.Serializable;
+import java.util.List;
+
+import javax.json.bind.annotation.JsonbTransient;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
 
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 
 @Entity
 @Table(name = "tb_fornecedor")
-public class Fornecedor extends PanacheEntityBase{
+public class Fornecedor extends PanacheEntityBase implements Serializable{
+
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id_fornecedor;
-    private String nome_fornecedor;
-    private int id_produto_fk;
-    
-    
-    public int getId_fornecedor() {
-        return id_fornecedor;
-    }
-    public void setId_fornecedor(int id_fornecedor) {
-        this.id_fornecedor = id_fornecedor;
-    }
-    public String getNome_fornecedor() {
-        return nome_fornecedor;
-    }
-    public void setNome_fornecedor(String nome_fornecedor) {
-        this.nome_fornecedor = nome_fornecedor;
-    }
-   
-    public int getId_produto_fk() {
-        return id_produto_fk;
-    }
-    public void setId_produto_fk(int id_produto_fk) {
-        this.id_produto_fk = id_produto_fk;
+    private int fo_id;
+
+
+    private String fo_nome;
+
+    @OneToMany
+    @JsonbTransient
+    private List<Produto> fo_list_produto;
+
+    public int getFo_id() {
+        return fo_id;
     }
 
+    public void setFo_id(int fo_id) {
+        this.fo_id = fo_id;
+    }
+
+    public String getFo_nome() {
+        return fo_nome;
+    }
+
+    public void setFo_nome(String fo_nome) {
+        this.fo_nome = fo_nome;
+    }
+    
+   
+
+    public List<Produto> getFo_list_produto() {
+        return fo_list_produto;
+    }
+
+    public void setFo_list_produto(List<Produto> fo_list_produto) {
+        this.fo_list_produto = fo_list_produto;
+    }
+
+    
 
 }

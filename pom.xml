@@ -63,6 +63,16 @@
       <scope>test</scope>
     </dependency>
     <dependency>
+      <groupId>jakarta.json.bind</groupId>
+      <artifactId>jakarta.json.bind-api</artifactId>
+      <version>1.0.2</version>
+  </dependency>
+  <dependency>
+          <groupId>org.eclipse</groupId>
+          <artifactId>yasson</artifactId>
+          <version>1.0.7</version>
+    </dependency>
+    <dependency>
       <groupId>io.rest-assured</groupId>
       <artifactId>rest-assured</artifactId>
       <scope>test</scope>

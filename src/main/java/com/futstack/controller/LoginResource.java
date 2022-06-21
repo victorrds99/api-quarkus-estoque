@@ -16,6 +16,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import com.futstack.Model.Login;
+import com.futstack.repository.LoginRepository;
 
 
 @Path("/login")
@@ -54,11 +55,5 @@ public class LoginResource {
         return "excluido com sucesso!!";
     }
 
-    @POST
-    @Path("/busca")
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    public Login busca(String nome) {
-        return loginRepository.findByName(nome);
-    }
+    
 }

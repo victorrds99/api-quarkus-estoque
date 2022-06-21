@@ -2,74 +2,84 @@ package com.futstack.Model;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 
+import java.io.Serializable;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "tb_produto")
-public class Produto extends PanacheEntityBase {
+public class Produto extends PanacheEntityBase implements Serializable {
+    private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id_produto;
-    private int id_fornecedor_fk;
-    private String nome_produto;
-    private int preco_produto;
-    private int quantidade_produto;
-    private String categoria_produto;
-    private int reposicao_produto;
+    private int pr_id;
+    
+    private String pr_nome;
+    private int pr_preco;
+    private int pr_quantidade;
+    private String pr_categoria;
+    private int pr_reposicao;
 
+    @ManyToOne
+    private Fornecedor pr_id_fornecedor_fk;
 
-    public int getId_produto() {
-        return id_produto;
+    public int getPr_id() {
+        return pr_id;
     }
 
-    public void setId_produto(int id_produto) {
-        this.id_produto = id_produto;
+    public void setPr_id(int pr_id) {
+        this.pr_id = pr_id;
     }
 
-    public int getId_fornecedor_fk() {
-        return id_fornecedor_fk;
+    public String getPr_nome() {
+        return pr_nome;
     }
 
-    public void setId_fornecedor_fk(int id_fornecedor_fk) {
-        this.id_fornecedor_fk = id_fornecedor_fk;
+    public void setPr_nome(String pr_nome) {
+        this.pr_nome = pr_nome;
     }
 
-    public String getNome_produto() {
-        return nome_produto;
+    public int getPr_preco() {
+        return pr_preco;
     }
 
-    public void setNome_produto(String nome_produto) {
-        this.nome_produto = nome_produto;
+    public void setPr_preco(int pr_preco) {
+        this.pr_preco = pr_preco;
     }
 
-    public int getPreco_produto() {
-        return preco_produto;
+    public int getPr_quantidade() {
+        return pr_quantidade;
     }
 
-    public void setPreco_produto(int preco_produto) {
-        this.preco_produto = preco_produto;
+    public void setPr_quantidade(int pr_quantidade) {
+        this.pr_quantidade = pr_quantidade;
     }
 
-    public int getQuantidade_produto() {
-        return quantidade_produto;
+    public String getPr_categoria() {
+        return pr_categoria;
     }
 
-    public void setQuantidade_produto(int quantidade_produto) {
-        this.quantidade_produto = quantidade_produto;
+    public void setPr_categoria(String pr_categoria) {
+        this.pr_categoria = pr_categoria;
     }
 
-    public String getCategoria_produto() {
-        return categoria_produto;
+    public int getPr_reposicao() {
+        return pr_reposicao;
     }
 
-    public void setCategoria_produto(String categoria_produto) {
-        this.categoria_produto = categoria_produto;
-    }
-    public int getReposicao_produto(){
-        return reposicao_produto;
+    public void setPr_reposicao(int pr_reposicao) {
+        this.pr_reposicao = pr_reposicao;
     }
 
-    public void setReposicao_produto(int reposicao_produto) {
-        this.reposicao_produto = reposicao_produto;
+    public Fornecedor getPr_id_fornecedor_fk() {
+        return pr_id_fornecedor_fk;
     }
+
+    public void setPr_id_fornecedor_fk(Fornecedor pr_id_fornecedor_fk) {
+        this.pr_id_fornecedor_fk = pr_id_fornecedor_fk;
+    }
+
+    
+    
 }
