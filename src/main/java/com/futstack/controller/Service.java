@@ -56,6 +56,13 @@ public class Service {
 
             ProdutoAddFornecedor(id_produto, id_fornecedor);
             
+            try {
+                Movimentacao movimentacao = new Movimentacao();
+                movimentacao.setMo_tipo("Fornecedor com id: "+ fornecedorObjeto.getFo_id() + ", nome: "+ fornecedorObjeto.getFo_nome() + " adicinoou o produto de id: " + produtoObjeto.getPr_id() + " e nome: " + produtoObjeto.getPr_nome());
+                movimentacao.persist();
+            } catch (Exception e) {
+                throw new Exception(e);
+            }
            
             return fornecedorObjeto;
            
@@ -112,7 +119,7 @@ public class Service {
                 movimentacao.setMo_tipo("Deposito com id: "+ depositoObjeto.getDe_id() + ", nome: "+ depositoObjeto.getDe_nome() + " adicinoou o produto de id: " + produtoObjeto.getPr_id() + " e nome: " + produtoObjeto.getPr_nome());
                 movimentacao.persist();
             } catch (Exception e) {
-                //TODO: handle exception
+                throw new Exception(e);
             }
             return depositoObjeto;
            

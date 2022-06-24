@@ -16,7 +16,7 @@ public class MovimentacaoRepository implements PanacheRepository<Movimentacao>{
     
     public void registraCriacaoDeposito(Deposito dto){
         Movimentacao movimentacao = new Movimentacao();
-        movimentacao.setMo_tipo("Novo Deposito foi criado!! id: "+ dto.getDe_id() + ", nome: "+ dto.getDe_nome() + " !!");
+        movimentacao.setMo_tipo("Novo Deposito foi criado!! id: "+ dto.getDe_id() + ", nome: "+ dto.getDe_nome() + ", Ponto de Reposição: " + dto.getDe_reposicao() +  " !!");
         movimentacao.persist();
     }
 
@@ -73,9 +73,6 @@ public class MovimentacaoRepository implements PanacheRepository<Movimentacao>{
 
     public void registraAdicaoProdutoNoDeposito(Deposito depositoObjeto, Produto produtoObjeto){
 
-        
-
-
         Movimentacao movimentacao = new Movimentacao();
         movimentacao.setMo_tipo("Deposito com id: "+ depositoObjeto.getDe_id() + ", nome: "+ depositoObjeto.getDe_nome() + " adicinoou o produto de id: " + produtoObjeto.getPr_id() + " e nome: " + produtoObjeto.getPr_nome());
         movimentacao.persist();
@@ -83,9 +80,6 @@ public class MovimentacaoRepository implements PanacheRepository<Movimentacao>{
     }
 
     public void registraSubtracaoProdutoNoDeposito(Deposito depositoObjeto, Produto produtoObjeto){
-
-
-
 
         Movimentacao movimentacao = new Movimentacao();
         movimentacao.setMo_tipo("Deposito com id: "+ depositoObjeto.getDe_id() + ", nome: "+ depositoObjeto.getDe_nome() + " removeu o produto de id: " + produtoObjeto.getPr_id() + " e nome: " + produtoObjeto.getPr_nome());
