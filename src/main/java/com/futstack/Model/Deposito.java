@@ -14,6 +14,7 @@ import javax.persistence.Table;
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 
 @Entity
+
 @Table(name = "tb_deposito")
 public class Deposito extends PanacheEntityBase implements Serializable {
 
@@ -23,8 +24,6 @@ public class Deposito extends PanacheEntityBase implements Serializable {
     private int de_id;
     
     private String de_nome;
-
-    private int de_reposicao;
     
     @OneToMany
     private List<Produto> de_id_fk;
@@ -43,14 +42,6 @@ public class Deposito extends PanacheEntityBase implements Serializable {
 
     public void setDe_nome(String de_nome) {
         this.de_nome = de_nome;
-    }
-
-    public int getDe_reposicao() {
-        return de_reposicao;
-    }
-
-    public void setDe_reposicao(int de_reposicao) {
-        this.de_reposicao = de_reposicao;
     }
 
     public List<Produto> getDe_id_fk() {

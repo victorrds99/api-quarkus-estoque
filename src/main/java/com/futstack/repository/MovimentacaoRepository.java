@@ -16,7 +16,7 @@ public class MovimentacaoRepository implements PanacheRepository<Movimentacao>{
     
     public void registraCriacaoDeposito(Deposito dto){
         Movimentacao movimentacao = new Movimentacao();
-        movimentacao.setMo_tipo("Novo Deposito foi criado!! id: "+ dto.getDe_id() + ", nome: "+ dto.getDe_nome() + ", Ponto de Reposição: " + dto.getDe_reposicao() +  " !!");
+        movimentacao.setMo_tipo("Novo Deposito foi criado!! id: "+ dto.getDe_id() + ", nome: "+ dto.getDe_nome() + " !!");
         movimentacao.persist();
     }
 
@@ -88,6 +88,11 @@ public class MovimentacaoRepository implements PanacheRepository<Movimentacao>{
     }
     
 
+    public void registrAdicaoProdutoNF(Produto dto){
+        Movimentacao movimentacao = new Movimentacao();
+        movimentacao.setMo_tipo("Novo Produto foi criado!! id: "+ dto.getPr_id() + ", nome: "+ dto.getPr_nome() + ", categoria: " + dto.getPr_categoria() + " !!");
+        movimentacao.persist();
+    }
 
   
 

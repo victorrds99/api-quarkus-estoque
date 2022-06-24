@@ -68,7 +68,6 @@ public class DepositoResource {
 
 
             dto.setDe_nome(deposito.getDe_nome());
-            dto.setDe_reposicao(deposito.getDe_reposicao());
             
             dto.persist();
             movimentacaoRepository.registraAlteracaoDeposito(dto);

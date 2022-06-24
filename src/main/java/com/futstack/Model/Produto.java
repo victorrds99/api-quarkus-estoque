@@ -3,7 +3,9 @@ package com.futstack.Model;
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.*;
 
 @Entity
@@ -21,8 +23,9 @@ public class Produto extends PanacheEntityBase implements Serializable {
     private String pr_categoria;
     private int pr_reposicao;
 
-    @ManyToOne
-    private Fornecedor pr_id_fornecedor_fk;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JsonbTransient
+    private List<Fornecedor> pr_id_fornecedor_fk;
 
     public int getPr_id() {
         return pr_id;
@@ -72,11 +75,11 @@ public class Produto extends PanacheEntityBase implements Serializable {
         this.pr_reposicao = pr_reposicao;
     }
 
-    public Fornecedor getPr_id_fornecedor_fk() {
+    public List<Fornecedor> getPr_id_fornecedor_fk() {
         return pr_id_fornecedor_fk;
     }
 
-    public void setPr_id_fornecedor_fk(Fornecedor pr_id_fornecedor_fk) {
+    public void setPr_id_fornecedor_fk(List<Fornecedor> pr_id_fornecedor_fk) {
         this.pr_id_fornecedor_fk = pr_id_fornecedor_fk;
     }
 

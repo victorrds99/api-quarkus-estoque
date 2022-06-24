@@ -4,14 +4,14 @@ package com.futstack.Model;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.json.bind.annotation.JsonbTransient;
+
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
@@ -29,8 +29,7 @@ public class Fornecedor extends PanacheEntityBase implements Serializable{
 
     private String fo_nome;
 
-    @OneToMany
-    @JsonbTransient
+    @ManyToMany
     private List<Produto> fo_list_produto;
 
     public int getFo_id() {

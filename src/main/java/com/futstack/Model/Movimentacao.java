@@ -27,11 +27,19 @@ public class Movimentacao extends PanacheEntityBase implements Serializable {
 
 	public String mo_tipo;
 
+	public Operacao operacao;
+
 	public int mo_quantidade;
+
+	public int mo_preco_produto;
 	
 	public int mo_id_produto_fk;
 	
 	public int mo_id_fornecedor_fk;
+	 
+	public int mo_id_deposito_origem_fk;
+
+	public int mo_id_deposito_destino_fk;
 
 	public int getMo_id() {
 		return mo_id;
@@ -49,6 +57,7 @@ public class Movimentacao extends PanacheEntityBase implements Serializable {
 		this.mo_data = mo_data;
 	}
 
+
 	public String getMo_tipo() {
 		return mo_tipo;
 	}
@@ -63,6 +72,14 @@ public class Movimentacao extends PanacheEntityBase implements Serializable {
 
 	public void setMo_quantidade(int mo_quantidade) {
 		this.mo_quantidade = mo_quantidade;
+	}
+
+	public int getMo_preco_produto() {
+		return mo_preco_produto;
+	}
+
+	public void setMo_preco_produto(int mo_preco_produto) {
+		this.mo_preco_produto = mo_preco_produto;
 	}
 
 	public int getMo_id_produto_fk() {
@@ -80,6 +97,34 @@ public class Movimentacao extends PanacheEntityBase implements Serializable {
 	public void setMo_id_fornecedor_fk(int mo_id_fornecedor_fk) {
 		this.mo_id_fornecedor_fk = mo_id_fornecedor_fk;
 	}
+
+	public int getMo_id_deposito_origem_fk() {
+		return mo_id_deposito_origem_fk;
+	}
+
+	public void setMo_id_deposito_origem_fk(int mo_id_deposito_origem_fk) {
+		this.mo_id_deposito_origem_fk = mo_id_deposito_origem_fk;
+	}
+
+	public int getMo_id_deposito_destino_fk() {
+		return mo_id_deposito_destino_fk;
+	}
+
+	public void setMo_id_deposito_destino_fk(int mo_id_deposito_destino_fk) {
+		this.mo_id_deposito_destino_fk = mo_id_deposito_destino_fk;
+	}
+
+	public Operacao getOperacao() {
+		return operacao;
+	}
+
+	public void setOperacao(Operacao operacao) {
+		this.operacao = operacao;
+	}
+
+
+	
+	
 
     
 	
