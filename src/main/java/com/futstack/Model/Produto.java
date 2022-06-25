@@ -23,6 +23,8 @@ public class Produto extends PanacheEntityBase implements Serializable {
     private String pr_categoria;
     private int pr_reposicao;
 
+    private boolean pr_pont_repo;
+
     @ManyToMany(cascade = CascadeType.ALL)
     @JsonbTransient
     private List<Fornecedor> pr_id_fornecedor_fk;
@@ -83,6 +85,23 @@ public class Produto extends PanacheEntityBase implements Serializable {
         this.pr_id_fornecedor_fk = pr_id_fornecedor_fk;
     }
 
-    
-    
+    public boolean isPr_pont_repo() {
+        return pr_pont_repo;
+    }
+
+    public void setPr_pont_repo(boolean pr_pont_repo) {
+        this.pr_pont_repo = pr_pont_repo;
+    }
+
+    public static List<Produto> findByCategories(String categoria) {
+        return find("pr_categoria", categoria).list();
+    }
+    public static List<Produto>ProdutosEmPontoReposicao() {
+        boolean reposicao = true;
+        return find("pr_pont_repo",reposicao).list();
+    }
+
+
+
+
 }

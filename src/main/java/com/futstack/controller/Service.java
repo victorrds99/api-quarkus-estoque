@@ -19,7 +19,6 @@ import com.futstack.Model.Fornecedor;
 import com.futstack.Model.Movimentacao;
 import com.futstack.Model.Operacao;
 import com.futstack.Model.Produto;
-import com.futstack.repository.LoginRepository;
 import com.futstack.repository.MovimentacaoRepository;
 
 
@@ -28,7 +27,7 @@ import com.futstack.repository.MovimentacaoRepository;
 @Consumes(MediaType.APPLICATION_JSON)
 public class Service {
     MovimentacaoRepository movimentacaoRepository;
-    LoginRepository loginRepository;
+    //LoginRepository loginRepository;
 
     @PUT
     @Path("/fornecedor/{id_fornecedor}/produto/{id_produto}")

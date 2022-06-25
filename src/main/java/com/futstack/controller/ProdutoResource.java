@@ -34,6 +34,9 @@ public class ProdutoResource {
     @Transactional
     public Response criar(Produto dto) {
         try {
+            if(dto.getPr_quantidade() < dto.getPr_reposicao()){
+                dto.setPr_pont_repo(true);
+            }
             dto.persist();
             movimentacaoRepository.registraCriacaoProduto(dto);
             Response retorno = Response.status(Response.Status.CREATED).build();
