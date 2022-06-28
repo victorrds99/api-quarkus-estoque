@@ -1,3 +1,8 @@
+1##Para rodar o projeto tenha instalado o quarkus e docker.
+na raiz do projeto dê o comando "docker-compose up" para subir um container com o banco postgresql 
+também na raiz do projeto, de o comando quarkus dev para instalar as dependencias e startar a aplicação
+localhost:8080 será o caminho para acessar a API.
+
 # estoque.api Project
 
 This project uses Quarkus, the Supersonic Subatomic Java Framework.
