@@ -1,0 +1,295 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --white: #ffff;
+  --black: #000;
+
+  --yellow-500: #FBB91F;
+  --gray-800: #7A7A7A;
+  
+  --green-500: #009688;
+  --red-500: #f44336;
+  --red-200: #E26565;
+}
+
+@media (max-width: 1080px) {
+  html {
+    font-size: 93.75%;
+  }
+}
+
+@media (max-width: 720px) {
+  html {
+    font-size: 87.5%;
+  }
+}
+
+body {
+  background: linear-gradient(233.69deg, #E7A1A1 17.89%, #EDCC97 87.54%);
+  color: var(--black);
+}
+
+body,
+input,
+textarea,
+select,
+button {
+  font: 400 1rem "Poppins", sans-serif;
+}
+
+button {
+  cursor: pointer;
+}
+
+h1, h2, h3, h4, h5, h6{
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.errorLabel {
+  color: red;
+  font-size: 0.9rem;
+}
+
+.errorColor {
+  color: var(--red-500);
+}
+
+.sucessColor {
+  color: var(--green-500);
+}
+
+td,
+th {
+  padding: 0.4rem 5px !important;
+}
+
+.disabled-link {
+  pointer-events: none;
+}
+
+.rtf{
+  button{
+    background-color: var(--red-200);
+  }
+}
+
+
+// Materialize
+
+nav a.sidenav-trigger i {
+  color: var(--white);
+}
+
+.row{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card{
+  background-color: rgba(242,242,242,0.5) !important;
+}
+
+
+.collapsible-header {
+  border-bottom: 1px solid #000 !important;
+}
+
+
+.dropdown-content {
+  li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    a {
+      color: var(--black) !important;
+    }
+
+    button {
+      width: 100%;
+      height: 100% !important;
+      background-color: transparent;
+      border: none;
+      text-align: center;
+    }
+  }
+}
+
+.spinner-layer {
+  padding: 5px !important;
+  border-color: var(--white) !important;
+}
+
+.btn:hover,
+.btn:focus {
+  background-color: var(--red-200) !important;
+}
+
+nav {
+  .brand-logo {
+    cursor: pointer;
+
+    a:first-of-type {
+      display: flex !important;
+
+      color: var(--white) !important;
+      font-family: "Roboto", sans-serif;
+
+      max-height: 3.8rem;
+    }
+
+    img{
+      padding: .6rem !important;
+    }
+  }
+
+  .sidenav-trigger {
+    color: var(--black);
+  }
+
+  ul a {
+    color: var(--white) !important;
+  }
+
+  li {
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.1) !important;
+    }
+
+    button {
+      a {
+        font-family: "Roboto", sans-serif;
+        &:hover {
+          background: none !important;
+        }
+      }
+    }
+  }
+}
+
+
+input:not(.browser-default) {
+  border-bottom:1px solid var(--white) !important;
+}
+
+.input-field input:focus + label,
+.input-field input:focus + label,
+.input-field textarea:focus + label,
+.input-field input:focus + label {
+  color: var(--red-200) !important;
+}
+
+.input-field input:focus,
+.input-field input:focus,
+.input-field textarea:focus,
+.input-field input:focus,
+.react-tel-input input:focus {
+  border-bottom: 1px solid var(--red-200) !important;
+  box-shadow: 0 1px 0 0 var(--red-200) !important;
+}
+
+
+.input-field .prefix {
+  color: var(--white) !important;
+}
+.input-field .prefix.active {
+  color: var(--red-200) !important;
+}
+
+.react-tel-input {
+  input {
+    width: calc(100% - 3rem) !important;
+    margin-left: 3rem !important;
+  }
+
+  .flag-dropdown {
+    background: none !important;
+    border: none !important;
+  }
+}
+
+.input-field .btn {
+  background-color: var(--red-200) !important;
+}
+
+.input-field label {
+  color: var(--white) !important;
+}
+
+.collapsible {
+  li {
+    box-shadow: none !important;
+  }
+}
+
+.collapsible-header {
+  background: none !important;
+}
+
+.collapsible-body {
+  a {
+    display: flex;
+  }
+}
+
+input[type="text"]:not(.browser-default).validate + label {
+  width: 85% !important;
+}
+
+.btn-floating {
+  background-color: var(--red-200) !important;
+}
+
+.fixed-action-btn button {
+  background: none !important;
+  box-shadow: none !important;
+
+  &:hover {
+    background: none !important;
+    box-shadow: none !important;
+  }
+  &:focus {
+    background: none !important;
+    box-shadow: none !important;
+  }
+
+  i {
+    color: var(--white);
+  }
+}
+
+.select-wrapper{
+  ul{
+    li{
+      span{
+        color: var(--red-200) ;
+      }
+    }
+  }
+}
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+}
