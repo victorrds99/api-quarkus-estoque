@@ -1,10 +1,42 @@
-version: "3.7"
+version: '2'
 services:
-  estoque.api:
-    container_name: estoque2
-    image: postgres:latest
+
+  postgres:
+    image: postgres:11-alpine
+    container_name: "postgres-database"
+    ports:
+      - "5432:5432"
+    networks:
+      - myytnetwork
     environment:
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: admin
+
+  frontend:
+    container_name: frontend
+    image: estoque
+    expose:
+      - "3000"
     ports:
-      - "5432:5432"
+      - "3000:3000"
+    networks:
+      - myytnetwork
+    depends_on:
+      - postgres
+
+  my-quarkus-app:
+    container_name: quarkus-app
+    image: quarkus-sample-jvm:latest
+    expose:
+      - 8080
+    ports:
+      - "8080:8080"
+    networks:
+      - myytnetwork
+    depends_on:
+      - postgres
+      - frontend
+
+networks:
+  myytnetwork:
+    driver: bridge
