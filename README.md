@@ -1,7 +1,7 @@
 # estoque.api Project
 
 
-You can run your application in dev mode that enables live coding using:
+Take the quarkus compiled code and package it in its distributable format, such as a JAR:
 ```shell script
 mvn package -DskipTests
 ```
