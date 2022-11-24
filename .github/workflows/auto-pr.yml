@@ -3,7 +3,7 @@ name: Create automatic PR
 on:
   push:
     branches:
-      - main
+      - develop
 
 jobs:
   updateAuthor:
