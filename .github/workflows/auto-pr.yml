@@ -1,32 +1,19 @@
-name: Create automatic PR
-
+name: Pull Request Action
 on:
   push:
     branches:
-      - develop
+      - feature/*
 
 jobs:
-  updateAuthor:
-    runs-on:  ubuntu-latest
+  create-pull-request:
+    runs-on: ubuntu-latest
     steps:
-      - name: checking out code
+      - name: Check out repository code
         uses: actions/checkout@v2
-
-      - name: extract git commit data
-        uses: victorrds99/api-quarkus-estoque@develop
-
-      - name: Update author information
-        run: echo ${{env.GIT_COMMIT_AUTHOR_NAME}} > AUTHOR
-        
-      - name: Raise PR
-        uses: rafalmeida73/create-pull-request@main
-        with: 
-          branch: "auto-pr-branch"
-          base: main
-          title: "Merge develop in main"
-          commiter: ${{ env.GIT_COMMIT_AUTHOR_NAME}} <${{ env.GIT_COMMIT_AUTHOR_EMAIL}}*>
-          author: ${{ env.GIT_COMMIT_AUTHOR_NAME}} <${{ env.GIT_COMMIT_AUTHOR_EMAIL}}*>
-          body:
-            Pr to merge develop in main
-          token: ${{ secrets.GITHUB_TOKEN}}
-          delete-branch: true
+      - name: pull-request
+        uses: victorrds99/api-quarkus-estoque@v2
+        with:
+          destination_branch: "develop"
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          pr_label: "feature, automated pr"
+          pr_title: "[Example] Simple demo"
