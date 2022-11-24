@@ -5,15 +5,18 @@ on:
       - feature/*
 
 jobs:
-  create-pull-request:
+  pull-request:
+    name: Open PR to main
     runs-on: ubuntu-latest
     steps:
-      - name: Check out repository code
-        uses: actions/checkout@v2
-      - name: pull-request
-        uses: victorrds99/api-quarkus-estoque@v2
-        with:
-          destination_branch: "develop"
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          pr_label: "feature, automated pr"
-          pr_title: "[Example] Simple demo"
+    - uses: actions/checkout@v2
+      name: checkout
+
+    - uses: repo-sync/pull-request@v2
+      name: pull-request
+      with:
+        destination_branch: "develop"
+        pr_title: "Pulling ${{ github.ref }} into develop"
+        pr_body: "👑 *An automated PR*"
+        pr_draft: true
+        github_token: ${{ secrets.GITHUB_TOKEN }}
