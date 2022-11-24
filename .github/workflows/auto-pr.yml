@@ -19,7 +19,7 @@ jobs:
         run: echo ${{env.GIT_COMMIT_AUTHOR_NAME}} > AUTHOR
         
       - name: Raise PR
-        uses: rafalmeida73/create-pull-request@main
+        uses: victorrds99/api-quarkus-estoque@main
         with: 
           branch: "auto-pr-branch"
           base: main
