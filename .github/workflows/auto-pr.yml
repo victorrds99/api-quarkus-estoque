@@ -6,7 +6,7 @@ on:
 
 jobs:
   pull-request:
-    name: Open PR to develop
+    name: Open PR to main
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -15,8 +15,8 @@ jobs:
     - uses: repo-sync/pull-request@v2
       name: pull-request
       with:
-        destination_branch: "develop"
-        pr_title: "Pulling ${{ github.ref }} into develop"
+        destination_branch: "main"
+        pr_title: "Pulling ${{ github.ref }} into main"
         pr_body: " An automated PR to features"
         pr_draft: true
         github_token: ${{ secrets.GITHUB_TOKEN }}
