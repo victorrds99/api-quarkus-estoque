@@ -17,8 +17,14 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import org.eclipse.microprofile.config.inject.ConfigProperty;
+
+import com.futstack.Model.ConteudoMensagem;
 import com.futstack.Model.Deposito;
 import com.futstack.repository.MovimentacaoRepository;
+
+import software.amazon.awssdk.services.sns.SnsClient;
+import software.amazon.awssdk.services.sns.model.PublishResponse;
 
 @Path("/deposito")
 @Produces(MediaType.APPLICATION_JSON)
@@ -26,7 +32,34 @@ import com.futstack.repository.MovimentacaoRepository;
 public class DepositoResource {
    
     @Inject
+    SnsClient client;
+
+    @ConfigProperty(name = "topic.arn", defaultValue = "arn:aws:sns:us-east-1:399093640054:Quarkus")
+    String topicArn;
+    
+    @Inject
     MovimentacaoRepository movimentacaoRepository;
+
+    public PublishResponse mandaSmsEmail(ConteudoMensagem request){
+        var conteudoMensagem = new ConteudoMensagem();
+        conteudoMensagem.setAssuntoMensagem(request.getAssuntoMensagem());
+        conteudoMensagem.setMensagem(request.getMensagem());
+        PublishResponse resposta = client.publish(p -> 
+            p.message(conteudoMensagem.getMensagem())
+            .topicArn(topicArn)
+            .subject(conteudoMensagem.getAssuntoMensagem()));
+        return resposta;
+    }
+
+    @Path("/teste")
+    @GET
+    public String testaAws() {
+        var req = new ConteudoMensagem();
+        req.setAssuntoMensagem("deu certo");
+        req.setMensagem("deu certo mané");
+        var resposta = mandaSmsEmail(req);
+        return "certo"+resposta;  
+    }
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -47,7 +80,10 @@ public class DepositoResource {
         try {
             dto.persist();
             movimentacaoRepository.registraCriacaoDeposito(dto);
-
+            var req = new ConteudoMensagem();
+            req.setAssuntoMensagem("Novo Deposito Criado!!");
+            req.setMensagem("Atenção!!! Foi criado um novo depósito em sua aplicação. \nNome= "+dto.getDe_nome() +" "+ "Produtos= " + dto.getDe_id_fk());
+            mandaSmsEmail(req);
             Response retorno = Response.status(Response.Status.CREATED).build();
             return retorno;
         }catch (Exception e){
