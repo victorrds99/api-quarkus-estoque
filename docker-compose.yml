@@ -26,7 +26,7 @@ services:
 
   my-quarkus-app:
     container_name: quarkus-app
-    image: quarkus-sample-jvm:latest
+    image: api-quarkus-estoque8:latest
     expose:
       - 8080
     ports:
